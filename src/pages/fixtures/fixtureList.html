@@ -1,0 +1,21 @@
+<ion-header >
+  <ion-navbar hideBackButton >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons>
+  <competition-list #competitionList (changeCompetition)="changeCompetition($event)"></competition-list>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+ <ng-template #loadingBlock>
+   <ion-content>Loading....</ion-content>
+  </ng-template>
+  <ion-content>
+<super-tabs tabsPlacement="top" #ionTabs scrollTabs="true" toolbarBackground="secondary" toolbarColor="tabTextColor" badgeColor="badgeColor" indicatorColor="indicatorColor" *ngIf="isDataAvailable; else loadingBlock">
+  <super-tab *ngFor="let matchday of matchdays" [root]="matchday.component" [rootParams]="{matchday:matchday}" title="{{matchday.title}}"></super-tab>
+</super-tabs>
+  </ion-content>
+
+
+

@@ -1,0 +1,23 @@
+<ion-header >
+  <ion-navbar hideBackButton >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons>
+  <competition-list #competitionList (changeCompetition)="fetchNewTeams($event)"></competition-list>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-item *ngFor="let team of teams" (click)="showTeamData(team)">
+    <ion-thumbnail item-left>
+      <img src="{{team.crestUrl}}">
+    </ion-thumbnail>
+    {{ team.name }}
+    </ion-item>
+  </ion-list>
+
+</ion-content>

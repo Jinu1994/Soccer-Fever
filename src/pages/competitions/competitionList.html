@@ -1,0 +1,10 @@
+
+
+  <ion-item class="competitions-dropdown">
+  <ion-select [(ngModel)]="globals.selectedCompetition" placeholder="Choose Competition" (ionChange)="changeSelection($event)" >
+    <ion-option *ngFor="let competition of globals.competitions" [value]="competition">
+      {{competition.name}}
+    </ion-option>
+  </ion-select>
+  </ion-item>
+

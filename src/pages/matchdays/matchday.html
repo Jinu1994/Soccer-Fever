@@ -1,0 +1,39 @@
+
+   <ng-template #loadingBlock>
+     Loading....
+   </ng-template>
+   <ion-content>
+<ion-grid class="matchday-fixture-list" inset *ngIf="isDataAvailable; else loadingBlock">
+    <ion-row *ngFor="let fixture of fixtures" class="fixture-item">
+      <ion-col col-4 > 
+        <div class="home-team-container" align="left">
+        <div class="team-icon">
+      <img src="{{fixture.homeTeam?.crestUrl}}">
+      </div>
+      <div class="team-name">{{fixture.homeTeam?.name}}</div>
+        </div>
+      </ion-col>
+      <ion-col col-4>
+    <div class="fixture-details">
+    <p><span *ngIf="!fixture.isMatchCompleted;else completedMatchBlock">vs</span><p>
+    </div>
+    <ng-template #completedMatchBlock>
+      <div class="result">
+   <div>{{fixture.result.goalsHomeTeam}} - {{fixture.result.goalsAwayTeam}}</div>
+   <div>Full Time</div>
+   </div>
+ </ng-template>
+      </ion-col>
+      <ion-col col-4 >
+        <div class="away-team-container" align="right">
+       <div class="team-icon">
+      <img src="{{fixture.awayTeam?.crestUrl}}">
+      </div>
+      <div class="team-name">{{fixture.awayTeam?.name}}</div>
+    </div>
+      </ion-col>
+      
+    <hr class="fixture-item-break">
+    </ion-row>
+</ion-grid>
+   </ion-content>

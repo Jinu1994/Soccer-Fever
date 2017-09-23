@@ -1,0 +1,70 @@
+
+ <ion-header primary>
+  <ion-navbar hideBackButton >
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+  <ion-buttons>
+  <competition-list #competitionList (changeCompetition)="changeCompetition($event)"></competition-list>
+  </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+ <ion-content >
+<ng-template #nonGroupedCompetitionBlock>
+<ion-grid class="league-table" > 
+<ion-row>
+    <ion-col col-6>
+    </ion-col>
+    <ion-col col-1>
+        P
+    </ion-col>
+    <ion-col col-1>
+        W
+    </ion-col>
+    <ion-col col-1>
+        D
+    </ion-col>
+    <ion-col col-1>
+        L
+    </ion-col>
+    <ion-col col-1>
+        GD
+    </ion-col>
+    <ion-col col-1>
+        Pts
+    </ion-col>
+</ion-row>
+<ion-row *ngFor="let entry of leagueTableEntries">
+   <ion-col col-6>
+      <img class="table-team-icon" src="{{entry.team.crestUrl}}"> <div class="table-team-name">{{entry.team.name}}</div>
+    </ion-col>
+    <ion-col col-1>
+        {{entry.playedGames}}
+    </ion-col>
+    <ion-col col-1>
+        {{entry.wins}}
+    </ion-col>
+    <ion-col col-1>
+        {{entry.draws}}
+    </ion-col>
+    <ion-col col-1>
+        {{entry.losses}}
+    </ion-col>
+    <ion-col col-1>
+        {{entry.goalDifference}}
+    </ion-col>
+    <ion-col col-1>
+        {{entry.points}}
+    </ion-col>
+</ion-row>
+</ion-grid>
+
+</ng-template>
+
+ <super-tabs tabsPlacement="top" #ionTabs scrollTabs="true" *ngIf="isGroupedCompetition; else nonGroupedCompetitionBlock">
+  <super-tab *ngFor="let group of groups" [root]="group.component" [rootParams]="{groupData:group.groupTableEntries}" title="{{group.name}}"></super-tab>
+</super-tabs>
+
+</ion-content>

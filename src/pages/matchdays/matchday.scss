@@ -1,0 +1,27 @@
+.matchday-fixture-list{
+    margin-top:18px;
+}
+.fixture-item{
+    height:60px;
+    padding: 0 10px 0 10px;
+    margin: 5px 0 5px 0;
+}
+.team-icon img{
+    max-height: 30px !important;
+    max-width:30px !important;
+}
+.team-name{
+    margin-top:5px;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.result{
+    text-align:center;
+}
+.fixture-item-break{
+    width: 90%;
+    bottom: 10px;
+    position: relative;
+}
