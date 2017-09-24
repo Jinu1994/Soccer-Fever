@@ -1,5 +1,5 @@
 
-import {MatchdayPage} from './matchday.component';
+import {MatchdayComponent} from './matchday.component';
 import {Team} from '../teams/team';
 
 export class Matchday{
@@ -12,7 +12,7 @@ export class Matchday{
         this.id=id;
         this.title=`Matchday${id}`;
         this.fixturesLink=fixturesLink;
-        this.component=MatchdayPage;
+        this.component=MatchdayComponent;
         this.teams=teams;
     }
 }

@@ -7,10 +7,10 @@ import { Team } from './team';
 
 @Component({
   selector: 'team-list',
-  templateUrl: 'teamList.html',
+  templateUrl: 'team-list.html',
   providers:[TeamService]
 })
-export class TeamList {
+export class TeamListComponent {
   selectedTeam: any;
   teams:Team[]
   constructor(public navCtrl: NavController, public navParams: NavParams,public teamService:TeamService) {

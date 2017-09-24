@@ -4,7 +4,7 @@ import {LeagueTableService} from './leagueTable.service'
 import {TeamService} from '../teams/team.service'
 import {LeagueTableEntry} from './leagueTableEntry';
 import { CompetitionService } from '../competitions/competition.service';
-import {GroupLeagueTable} from './groupLeagueTableEntry';
+import {GroupLeagueTable} from '../groupLeagueTable/groupLeagueTableEntry';
 import {Team} from '../teams/team';
 import {Content} from 'ionic-angular'
 import 'rxjs/add/operator/publishReplay';
@@ -14,7 +14,7 @@ import 'rxjs/add/operator/publishReplay';
   templateUrl: 'leagueTable.html',
   providers:[LeagueTableService,TeamService],
 })
-export class LeagueTablePage {
+export class LeagueTableComponent {
 @ViewChild(Content) content: Content;
  teams:Team[];
  leagueTableEntries:LeagueTableEntry[];

@@ -5,7 +5,7 @@ import {Team} from '../teams/team'
   selector: 'group-league-table',
   templateUrl: 'groupLeagueTable.html',
 })
-export class GroupLeagueTablePage {
+export class GroupLeagueTableComponent {
  loader:Loading;
  groupLeagueTableEntries:any;
  teams:Team[];

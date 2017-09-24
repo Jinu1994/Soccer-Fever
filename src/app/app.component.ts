@@ -2,9 +2,9 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 
-import { FixtureList } from '../pages/fixtures/fixtureList.component';
-import { TeamList } from '../pages/teams/teamList.component';
-import { LeagueTablePage } from '../pages/leagueTable/leagueTable.component';
+import { FixtureListComponent } from '../pages/fixtures/fixture-list.component';
+import { TeamListComponent } from '../pages/teams/team-list.component';
+import { LeagueTableComponent } from '../pages/leagueTable/leagueTable.component';
 import { CompetitionService } from '../pages/competitions/competition.service';
 import {Globals} from './global'
 
@@ -20,7 +20,7 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   // make HelloIonicPage the root (or first) page
-  rootPage = LeagueTablePage;
+  rootPage = LeagueTableComponent;
   rootParams= {};
   pages: Array<{title: string, component: any}>;
   competitions:any;
@@ -36,9 +36,9 @@ export class MyApp {
     this.initializeApp();
     // set our app's pages
     this.pages = [
-      { title: 'Fixtures', component: FixtureList },
-      { title: 'Teams', component: TeamList },
-      { title: 'League Table', component: LeagueTablePage },
+      { title: 'Fixtures', component: FixtureListComponent },
+      { title: 'Teams', component: TeamListComponent },
+      { title: 'League Table', component: LeagueTableComponent },
     ];
     this.rootParams={competition:{fixturesLink:"http://www.football-data.org/v1/fixtures"}};
   }

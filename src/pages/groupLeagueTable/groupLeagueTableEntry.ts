@@ -1,5 +1,5 @@
 import {Team} from '../teams/team'
-import {GroupLeagueTablePage} from './groupLeagueTable.component'
+import {GroupLeagueTableComponent} from '../groupLeagueTable/groupLeagueTable.component'
 
 
 export class GroupLeagueTable{
@@ -13,7 +13,7 @@ export class GroupLeagueTable{
   constructor(name:string,data:any,teams:Team[]){
       var self=this;
       self.name=name;
-      self.component=GroupLeagueTablePage;
+      self.component=GroupLeagueTableComponent;
       this.teams=teams;
       self.groupTableEntries=data.map(function(object){
           return {
@@ -41,7 +41,7 @@ export class GroupLeagueTableEntry{
     component:any;
     constructor(fields:{groupName:string,team:Team,points:number,goals:number,goalsAgainst:number,goalDifference:number}){
         Object.assign(this,fields);
-        this.component=GroupLeagueTablePage;
+        this.component=GroupLeagueTableComponent;
     }
 }
 

@@ -3,20 +3,18 @@ import {NavController, NavParams} from 'ionic-angular';
 import {Competition} from './competition';
 import {CompetitionService} from './competition.service'
 import {Globals} from '../../app/global'
-import {Events} from 'ionic-angular'
 @Component({
   selector: 'competition-list',
-  templateUrl: 'competitionList.html'
+  templateUrl: 'competition-list.html'
 })
-export class CompetitionList {
+export class CompetitionListComponent {
    selectedCompetition:Competition;
    competitions:Competition[];
    @Output() changeCompetition:EventEmitter<Competition>=new EventEmitter<Competition>();
   constructor(public navCtrl: NavController
               , public navParams: NavParams
               ,public globals:Globals,
-              public competitionService:CompetitionService,
-              private events:Events
+              public competitionService:CompetitionService
               ){
  
    }

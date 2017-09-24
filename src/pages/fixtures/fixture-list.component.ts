@@ -8,10 +8,10 @@ import 'rxjs/add/operator/publishReplay';
 
 @Component({
   selector: 'fixture-list',
-  templateUrl: 'fixtureList.html',
+  templateUrl: 'fixture-list.html',
   providers: [FixtureService,TeamService],
 })
-export class FixtureList {
+export class FixtureListComponent {
   selectedCompetition: any;
   loader: Loading;
   numberOfMatchdays:number;

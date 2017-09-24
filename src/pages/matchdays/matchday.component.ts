@@ -13,7 +13,7 @@ import 'rxjs/add/operator/publishReplay';
   templateUrl: 'matchday.html',
   providers:[FixtureService],
 })
-export class MatchdayPage {
+export class MatchdayComponent {
 @ViewChild(Content) content: Content;
  matchday:Matchday;
  fixtures:Fixture[];
