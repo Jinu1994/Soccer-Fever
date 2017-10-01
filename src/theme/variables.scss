@@ -30,13 +30,13 @@ $colors: (
   danger:     #f53d3d,
   light:      #C3C3E5,
   dark:       #443266,
-  tabTextColor:#111,
   badgeColor:red,
   indicatorColor:#FBB1E0
 );
 $background-color:$primary-color;
 $header-color:$primary-color;
 $toolbar-background: $primary-color;
+$tabs-ios-tab-icon-color-active:#FBB1E0;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
