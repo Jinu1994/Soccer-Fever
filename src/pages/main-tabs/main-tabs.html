@@ -11,9 +11,9 @@
 <ion-content>Loading....</ion-content>
 </ng-template>
 <ion-content>
-<super-tabs tabsPlacement="bottom" scrollTabs="true" toolbarBackground="secondary" toolbarColor="tabTextColor" indicatorColor="indicatorColor" badgeColor="badgeColor" *ngIf="isDataAvailable; else loadingBlock">
-    <super-tab [root]="fixtureListPage" [rootParams]="rootParams"  icon="ios-football"></super-tab>
-    <super-tab [root]="leagueTablePage" [rootParams]="rootParams"  icon="ios-list"></super-tab>
-    <super-tab [root]="teamListPage" [rootParams]="rootParams"  icon="ios-people"></super-tab>
-</super-tabs>
+<ion-tabs tabsPlacement="bottom" tabsHighlight="true" color="secondary" *ngIf="isDataAvailable; else loadingBlock">
+    <ion-tab [root]="fixtureListPage" [rootParams]="rootParams"  tabIcon="ios-football" color="primary"></ion-tab>
+    <ion-tab [root]="leagueTablePage" [rootParams]="rootParams"  tabIcon="ios-list"></ion-tab>
+    <ion-tab [root]="teamListPage" [rootParams]="rootParams"  tabIcon="ios-people"></ion-tab>
+</ion-tabs>
 </ion-content>
