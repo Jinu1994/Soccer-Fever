@@ -11,7 +11,8 @@ import { TeamListComponent } from '../pages/teams/team-list.component';
 import { CompetitionService } from '../pages/competitions/competition.service';
 import { LeagueTableComponent } from '../pages/leagueTable/leagueTable.component';
 import { GroupLeagueTableComponent } from '../pages/groupLeagueTable/groupLeagueTable.component';
-import {MatchdayComponent} from '../pages/matchdays/matchday.component'    
+import {MatchdayComponent} from '../pages/matchdays/matchday.component';
+import {MainTabsComponent} from '../pages/main-tabs/main-tabs.component';    
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SuperTabsModule } from 'ionic2-super-tabs';
@@ -22,6 +23,7 @@ import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     MyApp,
+    MainTabsComponent,
     CompetitionListComponent,
     FixtureListComponent,
     TeamListComponent,
@@ -41,6 +43,7 @@ import { HttpModule } from '@angular/http';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    MainTabsComponent,
     CompetitionListComponent,
     FixtureListComponent,
     TeamListComponent,

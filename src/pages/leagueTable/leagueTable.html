@@ -1,17 +1,6 @@
 
- <ion-header primary>
-  <ion-navbar hideBackButton >
-    <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
-    </button>
-  <ion-buttons>
-  <competition-list #competitionList (changeCompetition)="changeCompetition($event)"></competition-list>
-  </ion-buttons>
-  </ion-navbar>
-</ion-header>
 
-
- <ion-content >
+<ion-content>
 <ng-template #nonGroupedCompetitionBlock>
 <ion-grid class="league-table" > 
 <ion-row>
@@ -66,5 +55,4 @@
  <super-tabs tabsPlacement="top" #ionTabs scrollTabs="true" *ngIf="isGroupedCompetition; else nonGroupedCompetitionBlock">
   <super-tab *ngFor="let group of groups" [root]="group.component" [rootParams]="{groupData:group.groupTableEntries}" title="{{group.name}}"></super-tab>
 </super-tabs>
-
 </ion-content>
