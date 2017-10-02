@@ -3,7 +3,7 @@ import { Component,ViewChild } from '@angular/core';
 import { NavController, NavParams,LoadingController,Loading,App } from 'ionic-angular';
 import {FixtureService} from '../fixtures/fixture.service'
 import {Fixture} from '../fixtures/fixture';
-import {Matchday} from './matchday';
+import {Matchday,FixtureDay} from './matchday';
 import {Team} from '../teams/team';
 import {Content} from 'ionic-angular'
 import 'rxjs/add/operator/publishReplay';
@@ -43,27 +43,38 @@ mapfixtures(fixturesJson){
     let fixtureObject={
     id:object.id,
     competitionId:object.competitionId,
-    date:new Date(object.date),
+    Date:new Date(object.date),
     matchday:object.matchday,
     homeTeamId:object.homeTeamId,
     homeTeam:self.getTeam(object.homeTeamName),
     awayTeamId:object.awayTeamId,
     awayTeam:self.getTeam(object.awayTeamName),
-    result:object.result
+    result:object.result,
+    status:object.status
    };
   return new Fixture(fixtureObject);
   });
  }
- showFixtures(fixtures){
-    this.fixtures=fixtures;
-    //this.dismissLoader();
-    this.isDataAvailable=true;
+ processFixtures(fixtures:Fixture[]){
+      var groups={}
+      fixtures.forEach(element => {
+            let dayKey=element.day;
+            groups[dayKey]=groups[dayKey]||[];
+            groups[dayKey].push(element);
+      });
+      var self=this;
+      Object.keys(groups).map(function(day){
+          let fixtureDay=new FixtureDay(day);
+          fixtureDay.fixtures=groups[day];
+          self.matchday.fixtureDays.push(fixtureDay);
+      });
+      this.isDataAvailable=true;
  }
   fetchNewFixtures(){
    this.fixtureService.getAllfixturesForMatchday(this.matchday.fixturesLink,this.matchday.id)
     .subscribe(responseJson=>{
         let fixtures=this.mapfixtures(responseJson)
-        this.showFixtures(fixtures);
+        this.processFixtures(fixtures);
       });
   }
  

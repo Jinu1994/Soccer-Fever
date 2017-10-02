@@ -1,4 +1,5 @@
-import {Team} from '../teams/team'
+import {Team} from '../teams/team';
+import * as moment from 'moment';
 export class Fixture{
 id:number;
 competitionId:number;
@@ -7,16 +8,21 @@ matchday:number;
 homeTeam:Team;
 awayTeam:Team;
 result:MatchResult;
-isMatchCompleted:boolean;
+status:string;
+day:string;
+time:string;
 
+set Date(date:Date){
+  this.date=date;
+  this.day=date.toDateString();
+  this.time=moment(date).format('h:mm A');
+}
 
  
-constructor(fields:{id:number,competitionId:number,date:Date,matchday:number, 
+constructor(fields:{id:number,competitionId:number,Date:Date,matchday:number, 
                 homeTeam:Team,homeTeamId:number,awayTeamId:number,awayTeam:Team,
-                result:any}){
+                result:any,status:string}){
         Object.assign(this,fields)
-        let currentDate=new Date();
-        this.isMatchCompleted=this.date<currentDate;
         let result=new MatchResult(fields.result)
         this.result=result;
     }

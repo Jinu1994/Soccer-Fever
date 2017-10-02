@@ -28,7 +28,7 @@ $colors: (
   primary:    $primary-color,
   secondary:  #B5F6CD,
   danger:     #f53d3d,
-  light:      #C3C3E5,
+  light:      #CFBEFB,
   dark:       #443266,
   badgeColor:red,
   indicatorColor:#FBB1E0
@@ -37,6 +37,7 @@ $background-color:$primary-color;
 $header-color:$primary-color;
 $toolbar-background: $primary-color;
 $tabs-ios-tab-icon-color-active:#FBB1E0;
+$font-size:10px;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
