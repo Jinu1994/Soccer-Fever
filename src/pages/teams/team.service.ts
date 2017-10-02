@@ -11,19 +11,20 @@ export class TeamService{
 
   }
  private mapteams(teamsJson){
-   return teamsJson.standing.map(function(object):Team{
+   return teamsJson.teams.map(function(object):Team{
     let teamObject={
     id:object.id,
-    name:object.teamName,
-    crestUrl:object.crestURI,
-    playedGames:object.playedGames,
-    wins:object.wins,
-    draws:object.draws,
-    losses:object.losses,
-    goals:object.goals,
-    goalsAgainst:object.goalsAgainst,
-    home:object.home,
-    away:object.away
+    name:object.name,
+    shortName:object.shortName,
+    crestUrl:object.crestUrl,
+    // playedGames:object.playedGames,
+    // wins:object.wins,
+    // draws:object.draws,
+    // losses:object.losses,
+    // goals:object.goals,
+    // goalsAgainst:object.goalsAgainst,
+    // home:object.home,
+    // away:object.away
    };
    
    return new Team(teamObject);

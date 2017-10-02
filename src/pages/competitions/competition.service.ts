@@ -24,7 +24,7 @@ export class CompetitionService {
         numberOfMatchdays: object.numberOfMatchdays,
         currentMatchday: object.currentMatchday,
         fixturesLink: object._links.fixtures.href,
-        teamsDataLink: object._links.leagueTable.href,
+        teamsDataLink: object._links.teams.href,
         leagueTableLink: object._links.leagueTable.href
       };
      
