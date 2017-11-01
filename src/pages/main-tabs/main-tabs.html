@@ -8,10 +8,10 @@
       </ion-header>
       
 <ng-template #loadingBlock>
-<ion-content>Loading....</ion-content>
+<ion-content>Loading......</ion-content>
 </ng-template>
 <ion-content>
-<ion-tabs tabsPlacement="bottom" tabsHighlight="true" color="secondary" *ngIf="isDataAvailable; else loadingBlock">
+<ion-tabs tabsPlacement="bottom" tabsHighlight="true" color="secondary" *ngIf="isDataAvailable; else loadingBlock" [selectedIndex]="selectedTabIndex" #mainTab>
     <ion-tab [root]="fixtureListPage" [rootParams]="rootParams"  tabIcon="ios-football" ></ion-tab>
     <ion-tab [root]="leagueTablePage" [rootParams]="rootParams"  tabIcon="ios-list" ></ion-tab>
     <ion-tab [root]="teamListPage" [rootParams]="rootParams"  tabIcon="ios-people" ></ion-tab>
