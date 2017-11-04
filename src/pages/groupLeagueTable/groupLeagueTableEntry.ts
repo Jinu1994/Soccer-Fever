@@ -10,7 +10,7 @@ export class GroupLeagueTable{
   getTeam(name:string):Team{
   return this.teams.find(team=>team.name==name);
 }
-  constructor(name:string,data:any,teams:Team[]){
+  constructor(name:string,data:any,teams:Team[],matchday:number){
       var self=this;
       self.name=name;
       self.component=GroupLeagueTableComponent;
@@ -20,13 +20,13 @@ export class GroupLeagueTable{
       groupName:object.group,
       rank:object.rank,
       team:self.getTeam(object.team),
-      playedGames:object.playedGames,
+      playedGames:matchday-1,
       goals:object.goals,
       goalsAgainst:object.goalsAgainst,
       goalDifference:object.goalDifference,
       points:object.points
    };
-      });
+      }).sort((team1,team2)=>team2.points-team1.points);
 }
 }
 export class GroupLeagueTableEntry{

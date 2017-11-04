@@ -3,8 +3,10 @@
 
 
 <ion-grid class="group-league-table" > 
+<ion-item-divider color="secondary" class="league-table-header" sticky>
 <ion-row>
-    <ion-col col-6>
+    <ion-col col-5>
+        Team
     </ion-col>
     <ion-col col-1>
         P
@@ -15,16 +17,17 @@
     <ion-col col-1>
         GA
     </ion-col>
-    <ion-col col-1>
+    <ion-col col-2>
         GD
     </ion-col>
     <ion-col col-1>
         Pts
     </ion-col>
 </ion-row>
+</ion-item-divider>
 <ion-row *ngFor="let entry of groupLeagueTableEntries">
-   <ion-col col-6>
-      <img class="table-team-icon" src="{{entry.team.crestUrl}}"> <div class="table-team-name">{{entry.team.name}}</div>
+   <ion-col col-5>
+      <img class="table-team-icon" src="{{entry.team.crestUrl}}"> <div class="table-team-name">{{entry.team.shortName}}</div>
     </ion-col>
     <ion-col col-1>
         {{entry.playedGames}}
@@ -35,7 +38,7 @@
     <ion-col col-1>
         {{entry.goalsAgainst}}
     </ion-col>
-    <ion-col col-1>
+    <ion-col col-2>
         {{entry.goalDifference}}
     </ion-col>
     <ion-col col-1>

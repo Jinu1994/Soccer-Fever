@@ -5,6 +5,7 @@
         <ion-item-divider color="secondary" class="league-table-header" sticky>
                 <ion-row>
                     <ion-col col-5>
+                        Team
                     </ion-col>
                     <ion-col col-1>P</ion-col>
                     <ion-col col-1>W</ion-col>
@@ -42,7 +43,7 @@
 
 </ng-template>
 
- <super-tabs tabsPlacement="top" #ionTabs scrollTabs="true" *ngIf="isGroupedCompetition; else nonGroupedCompetitionBlock">
+ <super-tabs tabsPlacement="top" #ionTabs scrollTabs="true" *ngIf="isGroupedCompetition; else nonGroupedCompetitionBlock" toolbarBackground="secondary" toolbarColor="tabTextColor" badgeColor="badgeColor" indicatorColor="indicatorColor" >
   <super-tab *ngFor="let group of groups" [root]="group.component" [rootParams]="{groupData:group.groupTableEntries}" title="{{group.name}}"></super-tab>
 </super-tabs>
 </ion-content>

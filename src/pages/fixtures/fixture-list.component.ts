@@ -18,6 +18,7 @@ export class FixtureListComponent {
   matchdays:any;
   tabs:any;
   isDataAvailable:boolean;
+  currentMatchDay:number=0;
   constructor(public navCtrl: NavController, public navParams: NavParams, 
         public loadingCtrl: LoadingController, public fixtureService: FixtureService, 
         public competitionService: CompetitionService,
@@ -33,11 +34,10 @@ export class FixtureListComponent {
      let matchday=new Matchday(i,competition.fixturesLink,competition.teams);
         this.matchdays.push(matchday);
     }
+  this.currentMatchDay=competition.currentMatchday-1;
    this.isDataAvailable=true;
   }
-   changeCompetition(competition){
-    this.appCtrl.getRootNav().setRoot(this.navCtrl.getActive().component,{competition:competition});
-  }
+   
   ngOnInit() {
     //this.showLoader();
     let competition = this.navParams.get("competition");

@@ -21,7 +21,7 @@ export class Matchday{
     teams:Team[];
     constructor(id:number,fixturesLink:string,teams:Team[]){
         this.id=id;
-        this.title=`Matchday${id}`;
+        this.title=`Day${id}`;
         this.fixturesLink=fixturesLink;
         this.component=MatchdayComponent;
         this.teams=teams;

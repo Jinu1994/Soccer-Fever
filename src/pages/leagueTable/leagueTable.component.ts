@@ -57,9 +57,9 @@ mapleagueTableEntries(leagueTableEntriesJson){
   });
  }
  
-showGroupLeagueTables(groupNames,data){
+showGroupLeagueTables(groupNames,data,matchday){
     for(var i=0;i<groupNames.length;i++){
-      let groupData=new GroupLeagueTable(`Group ${groupNames[i]}`,data[groupNames[i]],this.teams);
+      let groupData=new GroupLeagueTable(`Group ${groupNames[i]}`,data[groupNames[i]],this.teams,matchday);
       this.groups.push(groupData); 
     }
     this.dismissLoader();
@@ -80,7 +80,7 @@ showGroupLeagueTables(groupNames,data){
             if(!leagueTableEntries.standing){
               var standings=leagueTableEntries.standings;
               var groupNames=Object.keys(standings);
-              this.showGroupLeagueTables(groupNames,standings);
+              this.showGroupLeagueTables(groupNames,standings,leagueTableEntries.matchday);
             }else{
             this.leagueTableEntries=this.mapleagueTableEntries(leagueTableEntries);
             this.isGroupedCompetition=false;
@@ -92,7 +92,7 @@ showGroupLeagueTables(groupNames,data){
         if(!leagueTableEntries.standing){
               var standings=leagueTableEntries.standings;
               var groupNames=Object.keys(standings);
-              this.showGroupLeagueTables(groupNames,standings);
+              this.showGroupLeagueTables(groupNames,standings,leagueTableEntries.matchday);
             }else{
             this.leagueTableEntries=this.mapleagueTableEntries(leagueTableEntries);
             this.isGroupedCompetition=false;
