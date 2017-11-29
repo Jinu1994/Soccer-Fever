@@ -21,9 +21,7 @@ export class TeamListComponent {
     this.teamService.getAllteamsForCompetition(competition.teamsLink)
     .subscribe(teams=>this.teams=teams)
   }
-  // showTeamData(team:Team){
-  //   this.navCtrl.push(TeamDataPage,{team:team});
-  // }
+  
   ngOnInit(){
         let teamsDataLink=this.navParams.get('competition').teamsDataLink;
         this.teamService.getAllteamsForCompetition(teamsDataLink)
