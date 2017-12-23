@@ -8,6 +8,7 @@ import {GroupLeagueTable} from '../groupLeagueTable/groupLeagueTableEntry';
 import {Team} from '../teams/team';
 import {Content} from 'ionic-angular'
 import 'rxjs/add/operator/publishReplay';
+import { Competition } from '../competitions/competition';
 
 @Component({
   selector: 'league-table',
@@ -16,7 +17,7 @@ import 'rxjs/add/operator/publishReplay';
 })
 export class LeagueTableComponent {
 @ViewChild(Content) content: Content;
- teams:Team[];
+ competition:Competition;
  leagueTableEntries:LeagueTableEntry[];
  loader:Loading;
  groups:any;
@@ -38,14 +39,17 @@ dismissLoader(){
 this.loader.dismiss();
 }
 getTeam(name:string):Team{
-  return this.teams.find(team=>team.name==name);
+  return this.competition.teams.find(team=>team.name==name);
 }
 mapleagueTableEntries(leagueTableEntriesJson){
   var self=this;
   return leagueTableEntriesJson.standing.map(function(object):LeagueTableEntry{
+    let team=self.getTeam(object.teamName);
+
+    team.setPerformance(object.position,object);
     let leagueTableEntryObject={
       position:object.position,
-      team:self.getTeam(object.teamName),
+      team:team,
       playedGames:object.playedGames,
       wins:object.wins,
       draws:object.draws,
@@ -53,30 +57,25 @@ mapleagueTableEntries(leagueTableEntriesJson){
       goalDifference:object.goalDifference,
       points:object.points
    };
+
   return new LeagueTableEntry(leagueTableEntryObject);
   });
  }
  
 showGroupLeagueTables(groupNames,data,matchday){
     for(var i=0;i<groupNames.length;i++){
-      let groupData=new GroupLeagueTable(`Group ${groupNames[i]}`,data[groupNames[i]],this.teams,matchday);
+      let groupData=new GroupLeagueTable(`Group ${groupNames[i]}`,data[groupNames[i]],this.competition.teams,matchday);
       this.groups.push(groupData); 
     }
     this.dismissLoader();
     this.isGroupedCompetition=true;
  }
- changeCompetition(competition){
-    this.appCtrl.getRootNav().setRoot(this.navCtrl.getActive().component,{competition:competition});
-}
+
  getLeagueTableDataForCompetition(competition){
    
-      this.showLoader();
+   this.showLoader();
    this.leagueTableService.getLeagueTableDataForCompetition(competition.leagueTableLink)
     .subscribe(leagueTableEntries=>{
-      if(!competition.teams){
-        this.teamService.getAllteamsForCompetition(competition.teamsDataLink)
-        .subscribe(teams=>{
-            this.teams=competition.teams=teams;
             if(!leagueTableEntries.standing){
               var standings=leagueTableEntries.standings;
               var groupNames=Object.keys(standings);
@@ -87,44 +86,11 @@ showGroupLeagueTables(groupNames,data,matchday){
             this.dismissLoader();
             }
         });
-      }else{
-        this.teams=competition.teams;
-        if(!leagueTableEntries.standing){
-              var standings=leagueTableEntries.standings;
-              var groupNames=Object.keys(standings);
-              this.showGroupLeagueTables(groupNames,standings,leagueTableEntries.matchday);
-            }else{
-            this.leagueTableEntries=this.mapleagueTableEntries(leagueTableEntries);
-            this.isGroupedCompetition=false;
-            this.dismissLoader();
-            }
-      }
-    })
  }
   
   ngOnInit(){
-    let competition = this.navParams.get("competition");
-    if (!competition) {
-       this.competitionService.getAllCompetitions()
-        .subscribe(
-          competitions => {
-            let defaultCompetition=competitions.find(competition=>competition.name.startsWith("Premier League 20"));
-              this.teamService.getAllteamsForCompetition(defaultCompetition.teamsDataLink)
-              .subscribe(teams=>{
-                defaultCompetition.teams=teams;
-                this.getLeagueTableDataForCompetition(defaultCompetition);
-              });
-          });
-        
-    }
-    else {
-       this.teamService.getAllteamsForCompetition(competition.teamsDataLink)
-              .subscribe(teams=>{
-                competition.teams=teams;
-                this.getLeagueTableDataForCompetition(competition);
-    });
-    }
-      
-  }
+    this.competition = this.navParams.get("competition");
+    this.getLeagueTableDataForCompetition(this.competition);
+      }
 }
 

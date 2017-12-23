@@ -41,11 +41,6 @@ export class FixtureListComponent {
   ngOnInit() {
     //this.showLoader();
     let competition = this.navParams.get("competition");
-  
-       this.teamService.getAllteamsForCompetition(competition.teamsDataLink)
-              .subscribe(teams=>{
-                competition.teams=teams;
-                this.showMatchdayFixtures(competition);
-    });
+    this.showMatchdayFixtures(competition);
   }
 }

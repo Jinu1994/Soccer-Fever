@@ -6,6 +6,7 @@ import { FixtureListComponent } from '../pages/fixtures/fixture-list.component';
 import { TeamListComponent } from '../pages/teams/team-list.component';
 import { LeagueTableComponent } from '../pages/leagueTable/leagueTable.component';
 import { CompetitionService } from '../pages/competitions/competition.service';
+import { TeamService } from '../pages/teams/team.service';
 import { MainTabsComponent } from '../pages/main-tabs/main-tabs.component';
 import {Globals} from './global'
 
@@ -16,6 +17,7 @@ import {Events} from 'ionic-angular'
 @Component({
   selector:"soccer-fever",
   templateUrl: 'app.html',
+  providers:[TeamService]
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -32,16 +34,25 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public globals:Globals,
     private competitionService:CompetitionService,
+    private teamService:TeamService,
     private events:Events
   ) {
     this.initializeApp();
     // set our app's pages
     
   }
+  getTeamsForCompetition(){
+    var self=this;
+    self.teamService.getAllteamsForCompetition(this.globals.selectedCompetition.teamsDataLink)
+      .subscribe(teams=>{
+        self.globals.selectedCompetition.teams=teams;
+        self.globals.competitionsFetched.next(true);
+      });
+  }
   setGlobals(competitions){
     this.globals.competitions=competitions;
     this.globals.selectedCompetition=competitions.find(competition=>competition.name.startsWith("Premier League 20"));
-    this.globals.competitionsFetched.next(true);
+    this.getTeamsForCompetition();
   }
   initializeApp() {
     this.platform.ready().then(() => {

@@ -15,16 +15,11 @@ export class TeamListComponent {
   teams:Team[]
   constructor(public navCtrl: NavController, public navParams: NavParams,public teamService:TeamService) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.selectedTeam = navParams.get('competition');
-  }
-  fetchNewTeams(competition){
-    this.teamService.getAllteamsForCompetition(competition.teamsLink)
-    .subscribe(teams=>this.teams=teams)
+    
   }
   
   ngOnInit(){
-        let teamsDataLink=this.navParams.get('competition').teamsDataLink;
-        this.teamService.getAllteamsForCompetition(teamsDataLink)
-    .subscribe(teams=>this.teams=teams)
+        let teams=this.navParams.get('competition').teams;
+        this.teams=teams;
   }
 }
