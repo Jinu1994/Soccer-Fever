@@ -34,7 +34,7 @@ class TeamPerformance{
     //  this.losses=performanceInfo.losses;
     //  this.goals=performanceInfo.goals;
     Object.assign(this,performanceInfo);
-    this.points=this.wins*3+this.draws*2;
+    this.points=this.wins*3+this.draws*1;
     this.goalDifference=this.goals-this.goalsAgainst;
   }
 
