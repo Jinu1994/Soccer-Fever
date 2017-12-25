@@ -7,7 +7,7 @@ import {ScrollableTabs} from '../assets/scrollable-tabs/scrollable-tabs'
 import { CompetitionListComponent } from '../pages/competitions/competition-list.component';
 import { FixtureListComponent } from '../pages/fixtures/fixture-list.component';
 import { TeamListComponent } from '../pages/teams/team-list.component';
-//import { TeamDataPage } from '../pages/teams/teamData.component';
+import { TeamDataComponent } from '../pages/team-data/team-data.component';
 import { CompetitionService } from '../pages/competitions/competition.service';
 import { LeagueTableComponent } from '../pages/leagueTable/leagueTable.component';
 import { GroupLeagueTableComponent } from '../pages/groupLeagueTable/groupLeagueTable.component';
@@ -16,8 +16,8 @@ import {MainTabsComponent} from '../pages/main-tabs/main-tabs.component';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { SuperTabsModule } from 'ionic2-super-tabs';
-// import {ChartModule} from 'angular2-highcharts'
-// import * as highcharts from 'HighCharts'
+import {ChartModule} from 'angular2-highcharts';
+import * as highcharts from 'HighCharts';
 
 import { HttpModule } from '@angular/http';
 @NgModule({
@@ -27,7 +27,7 @@ import { HttpModule } from '@angular/http';
     CompetitionListComponent,
     FixtureListComponent,
     TeamListComponent,
-    //TeamDataPage,
+    TeamDataComponent,
     MatchdayComponent,
     LeagueTableComponent,
     GroupLeagueTableComponent,
@@ -38,7 +38,7 @@ import { HttpModule } from '@angular/http';
     IonicModule.forRoot(MyApp),
     HttpModule,
     SuperTabsModule.forRoot(),
-    //ChartModule.forRoot(highcharts)
+    ChartModule.forRoot(highcharts)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -47,7 +47,7 @@ import { HttpModule } from '@angular/http';
     CompetitionListComponent,
     FixtureListComponent,
     TeamListComponent,
-    //TeamDataPage,
+    TeamDataComponent,
     MatchdayComponent,
     LeagueTableComponent,
     GroupLeagueTableComponent
