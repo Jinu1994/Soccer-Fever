@@ -2,7 +2,7 @@
   
    <ion-content>
 <ion-item-group class="matchday-fixture-list"  *ngFor="let fixtureDay of matchday.fixtureDays" >
- <ion-item-divider class="item-divider" color="light" sticky>{{fixtureDay.day}}</ion-item-divider>
+ <ion-item-divider  color="light" sticky>{{fixtureDay.day}}</ion-item-divider>
   <ion-item *ngFor="let fixture of fixtureDay.fixtures" class="fixture-item">
       <div class="row">
         <div col-4 > 

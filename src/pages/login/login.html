@@ -1,0 +1,19 @@
+<ion-title>Login</ion-title>
+<form [formGroup]="loginForm" (submit)="loginUser()">
+    <ion-item>
+        <ion-label stacked>User Name</ion-label>
+        <ion-input type="text" formControlName="username" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!username.valid && submitAttempted">
+        <p class="error-text">Please Enter a valid name</p>
+     </ion-item>
+    <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password" formControlName="password" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!password.valid && submitAttempted">
+        <p class="error-text">Please Enter a valid password</p>
+     </ion-item>
+    <button ion-button type="submit">Log In</button>
+    <button ion-button (click)="registerUser()">Register</button>
+</form>

@@ -1,0 +1,18 @@
+<ion-header primary>
+    <ion-navbar hideBackButton >
+    <ion-buttons>
+    <competition-list #competitionList (changeCompetition)="changeCompetition($event)"></competition-list>
+    </ion-buttons>
+    </ion-navbar>
+  </ion-header>
+
+  <ion-content >
+      <ion-item-group >
+        <ion-item-divider color="light">
+          Upcoming Fixtures
+        </ion-item-divider>
+          <ion-item>
+              <button (click)="displayStorage()"></button>
+          </ion-item>
+      </ion-item-group>
+  </ion-content>

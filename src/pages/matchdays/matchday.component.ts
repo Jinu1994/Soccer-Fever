@@ -7,6 +7,7 @@ import {Matchday,FixtureDay} from './matchday';
 import {Team} from '../teams/team';
 import {Content} from 'ionic-angular'
 import 'rxjs/add/operator/publishReplay';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'match-day',
@@ -20,7 +21,7 @@ export class MatchdayComponent {
  loader:Loading;
  isDataAvailable:boolean=false;
   constructor(public navCtrl: NavController,public appCtrl:App, public navParams: NavParams,public loadingCtrl:LoadingController
-  ,public fixtureService:FixtureService) {
+  ,public fixtureService:FixtureService,private storage:Storage) {
     // If we navigated to this page, we will have a competition available as a nav param
    
   }
@@ -79,6 +80,7 @@ mapfixtures(fixturesJson){
   }
  
   ngOnInit(){
+    console.log(this.storage.get('token'));
     //this.showLoader();
     this.matchday=this.navParams.get('matchday');
     this.fetchNewFixtures();

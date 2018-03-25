@@ -1,0 +1,53 @@
+<ion-title>Register User</ion-title>
+<form [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+    <ion-item>
+            <ion-label stacked>Name</ion-label>
+            <ion-input type="text" formControlName="name" ></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!name.valid && submitAttempted">
+            <p class="error-text">Please Enter a valid name</p>
+    </ion-item>
+    <ion-item>
+        <ion-label stacked>User Name</ion-label>
+        <ion-input type="text" formControlName="username" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!username.valid && submitAttempted">
+        <p class="error-text">Please Enter a valid username</p>
+     </ion-item>
+     <ion-item>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" formControlName="email" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!email.valid && submitAttempted">
+        <p class="error-text">Please Enter a valid email</p>
+     </ion-item>
+    <ion-item>
+        <ion-label stacked>Password</ion-label>
+        <ion-input type="password" formControlName="password" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!password.valid  && submitAttempted">
+        <p class="error-text">Please Enter a valid password</p>
+     </ion-item>
+    <ion-item>
+        <ion-label stacked>Confirm Password</ion-label>
+        <ion-input type="password" formControlName="confirmPassword" ></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!confirmPassword.valid ">
+        <p class="error-text">Passwords do not match</p>
+     </ion-item>
+    <ion-item >
+        <ion-select placeholder="Choose Competition" formControlName="selectedCompetition" (ionChange)="changeCompetition($event)">
+            <ion-option *ngFor="let competition of globals.competitions" [value]="competition">
+              {{competition.name}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item *ngIf="chosenCompetition">
+        <ion-select placeholder="Choose Team" formControlName="selectedTeam" >
+            <ion-option *ngFor="let team of chosenCompetition.teams" [value]="team">
+              {{team.name}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <button ion-button type="submit">Register</button>
+</form>
