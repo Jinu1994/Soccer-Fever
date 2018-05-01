@@ -1,5 +1,8 @@
 export class Login{
     id:number;
-    userName:string;
+    email:string;
     password:string;
+    constructor(loginInfo:{email:String,password:String}){
+        Object.assign(this,loginInfo);
+    }
 }

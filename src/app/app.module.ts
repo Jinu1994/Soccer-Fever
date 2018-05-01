@@ -24,6 +24,8 @@ import * as highcharts from 'HighCharts';
 import { IonicStorageModule } from '@ionic/storage';
 
 import { HttpModule } from '@angular/http';
+import { SFErrorHandler } from './error-handler';
+import { TeamService } from '../pages/teams/team.service';
 @NgModule({
   declarations: [
     MyApp,
@@ -68,8 +70,9 @@ import { HttpModule } from '@angular/http';
     StatusBar,
     SplashScreen,
     Globals,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    CompetitionService
+    {provide: ErrorHandler, useClass: SFErrorHandler},
+    CompetitionService,
+    TeamService
   ]
 })
 export class AppModule {}

@@ -1,17 +1,18 @@
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/publishLast';
 import { Globals } from '../../app/global'
 import { Competition } from './competition';
-import { Injectable } from '@angular/core'
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+import { TeamService } from '../teams/team.service';
 
 @Injectable()
 export class CompetitionService {
   private getCompetitionsUrl = "http://api.football-data.org/v1/competitions?season=2017";
   competitions: Observable<Competition[]>;
-  constructor(private http: Http, private globals: Globals) {
+  constructor(private http: Http, private globals: Globals,private teamService:TeamService) {
   }
   private mapCompetitions(competionsJson) {
     return competionsJson.map(function (object): Competition {
@@ -31,28 +32,31 @@ export class CompetitionService {
       return new Competition(competitionObject);
     });
   }
-  getAllCompetitions(): Observable<Competition[]> {
+  getAllCompetitions(){
    
       let headers = new Headers();
       headers.append("X-Auth-Token", this.globals.apiToken)
-      this.competitions = this.http.get(this.getCompetitionsUrl, { headers: headers })
+      this.http.get(this.getCompetitionsUrl, { headers: headers })
         .map(response => this.mapCompetitions(response.json()))
-        .catch(this.handleError);
-      return this.competitions;
+        .catch((error)=>{
+          throw new Error(error);
+        })
+        .subscribe((competitions)=>this.setGlobals(competitions));
     
   }
-
-  private handleError(error: Response | any) {
-    let errMsg: string;
-    if (error instanceof Response) {
-      const body = error.json() || '';
-      const err = body.error || JSON.stringify(body);
-      errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
-    } else {
-      errMsg = error.message ? error.message : error.toString();
-    }
-    console.error(errMsg);
-    return Observable.throw(errMsg);
+  getTeamsForCompetition(){
+        this.teamService.getAllteamsForCompetition(this.globals.selectedCompetition.teamsDataLink)
+      .subscribe(teams=>{
+        this.globals.selectedCompetition.teams=teams;
+        this.globals.competitionsFetched.next(true);
+      });
+      
+  }
+  setGlobals(competitions){
+    this.globals.competitions=competitions;
+    this.globals.selectedCompetition=competitions.find(competition=>competition.name.startsWith("Premier League 20"));
+    this.getTeamsForCompetition();
+    
   }
 
 

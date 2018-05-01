@@ -1,11 +1,14 @@
 <ion-title>Login</ion-title>
+<ion-item *ngIf="loginFailed">
+    <p class="error-text">Login Failed. Please try again</p>
+</ion-item>
 <form [formGroup]="loginForm" (submit)="loginUser()">
     <ion-item>
-        <ion-label stacked>User Name</ion-label>
-        <ion-input type="text" formControlName="username" ></ion-input>
+        <ion-label stacked>Email</ion-label>
+        <ion-input type="text" formControlName="email" ></ion-input>
     </ion-item>
-    <ion-item *ngIf="!username.valid && submitAttempted">
-        <p class="error-text">Please Enter a valid name</p>
+    <ion-item *ngIf="!email.valid && submitAttempted">
+        <p class="error-text">Please Enter a valid email</p>
      </ion-item>
     <ion-item>
         <ion-label stacked>Password</ion-label>

@@ -6,8 +6,7 @@ import {TeamService} from '../teams/team.service';
 import {Globals} from '../../app/global'
 @Component({
   selector: 'competition-list',
-  templateUrl: 'competition-list.html',
-  providers:[TeamService]
+  templateUrl: 'competition-list.html'
 })
 export class CompetitionListComponent {
    selectedCompetition:Competition;

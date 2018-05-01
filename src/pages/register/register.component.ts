@@ -38,7 +38,7 @@ export class RegistrationComponent{
 
 registerUser(){
     this.submitAttempted=true;
-    if(this.registrationForm.status==="INVALID")
+    if(!this.registrationForm.valid)
         return;
     var newUser={
         name:this.registrationForm.controls.name.value,
@@ -61,29 +61,21 @@ get confirmPassword(){return this.registrationForm.controls.confirmPassword;}
 get selectedCompetition(){return this.registrationForm.controls.selectedCompetition;}
 get selectedTeam(){return this.registrationForm.controls.selectedTeam;}
 
-getTeamsForCompetition(){
-    var self=this;
-    if(!this.chosenCompetition.teams)
-        self.teamService.getAllteamsForCompetition(this.globals.selectedCompetition.teamsDataLink)
-      .subscribe(teams=>{
-        self.globals.selectedCompetition.teams=this.chosenCompetition.teams=teams;
-        self.globals.competitionsFetched.next(true);
-      });
-      
-  }
 
-  changeCompetition(event){
-   this.globals.selectedCompetition=this.chosenCompetition=event;
-   this.getTeamsForCompetition();
+
+  changeCompetition(competition){
+   this.globals.competitionsFetched.next(true);
+   
   }
   
-setGlobals(competitions){
-    this.globals.competitions=competitions;
-    this.globals.selectedCompetition=this.chosenCompetition=competitions.find(competition=>competition.name.startsWith("Premier League 20"));
-    this.getTeamsForCompetition();
-  }
+
     ngOnInit(){
-        this.competitionService.getAllCompetitions()
-        .subscribe(competitions=>this.setGlobals(competitions));
+        var self=this;
+        this.globals.competitionsFetched.subscribe((value)=>{
+            if(value){
+                self.chosenCompetition=self.globals.selectedCompetition;
+            }
+        });
+        this.competitionService.getAllCompetitions();
     }
 }
